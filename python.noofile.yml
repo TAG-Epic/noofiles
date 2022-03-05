@@ -1,5 +1,5 @@
 name: Python
-remote: git:tag-epic/python-template
+remote: git:noohub/python-template
 
 read:
   - name: "version"
@@ -58,17 +58,14 @@ steps:
     actions:
       - action: "command"
         command: "poetry update"
-        cwd: "./$$noo:name"
   - name: "Install dependencies"
     actions:
       - action: "command"
         command: "poetry install"
-        cwd: "./$$noo:name"
   - name: "Initialize git"
     actions:
       - action: "command"
         command: "git init"
-        cwd: "./$$noo:name"
   - name: "Commit template"
     actions:
       - action: "command"
@@ -76,9 +73,7 @@ steps:
         cwd: "./$$noo:name"
       - action: "command"
         command: "git commit -m \"Feat: Use python noo template\""
-        cwd: "./$$noo:name"
   - name: "Add origin"
     actions:
       - action: "command"
         command: "git remote add origin git@github.com:$$var:username/$$noo:name.git"
-        cwd: "./$$noo:name"
