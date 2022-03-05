@@ -42,7 +42,7 @@ steps:
       - action: "command"
         command: "git add ."
       - action: "command"
-        command: "git commit -m \"Import noocollection template\""
+        command: "git commit -m \"feat: Use @tag-epic/rust noocollection template\""
   - name: "Add remote"
     actions:
       - action: "command"

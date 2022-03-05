@@ -72,7 +72,7 @@ steps:
         command: "git add ."
         cwd: "./$$noo:name"
       - action: "command"
-        command: "git commit -m \"Feat: Use python noo template\""
+        command: "git commit -m \"feat: Use @tag-epic/python noocollection template\""
   - name: "Add origin"
     actions:
       - action: "command"
