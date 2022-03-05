@@ -1,0 +1,17 @@
+name: Git
+
+steps:
+  - name: "Create git repo"
+    actions:
+      - action: "command"
+        command: "git init"
+  - name: "Commit template"
+    actions:
+      - action: "command"
+        command: "git add ."
+      - action: "command"
+        command: "git commit -m \"Import noocollection template\""
+  - name: "Add remote"
+    actions:
+      - action: "command"
+        command: "git remote add origin git@github.com:$$var:username/$$noo:name.git"
