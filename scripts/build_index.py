@@ -15,7 +15,7 @@ with open("index.json", "w+") as f:
 # Yes this sucks, I didn't want to add the complexity of svelte.
 html = ""
 for noo_file in directory:
-    html += f"<a href=\"/{noo_file}\">{noo_file}</a>\n"
+    html += f"<a href=\"/{noo_file}\">{noo_file}</a><br>"
 with open("index.html", "w+") as f:
     f.write(html)
 
