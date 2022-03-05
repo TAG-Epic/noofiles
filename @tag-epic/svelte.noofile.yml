@@ -1,0 +1,54 @@
+name: Svelte
+remote: git:noohub/svelte-template
+
+read:
+  - name: "version"
+    prompt: "Project version"
+    default: "1.0.0"
+  - name: "username"
+    prompt: "GitHub username"
+
+steps:
+  - name: "Fill license"
+    actions:
+      - action: "replace"
+        files:
+          - "LICENSE"
+        src: "NOO-AUTHOR"
+        dest: "$$var:username"
+      - action: "replace"
+        files:
+          - "LICENSE"
+        src: "NOO-YEAR"
+        dest: "$$noo:year"
+  - name: "Fill out package.json"
+    actions:
+      - action: "replace"
+        files:
+          - "package.json"
+        src: "NOO-NAME"
+        dest: "$$noo:name"
+      - action: "replace"
+        files:
+          - "package.json"
+        src: "NOO-VERSION"
+        dest: "$$var:version"
+  - name: "Install packages"
+    actions:
+      - action: "command"
+        command: "npm i"
+  - name: "Initialize git"
+    actions:
+      - action: "command"
+        command: "git init"
+  - name: "Commit template"
+    actions:
+      - action: "command"
+        command: "git add ."
+        cwd: "./$$noo:name"
+      - action: "command"
+        command: "git commit -m \"Feat: Use python noo template\""
+  - name: "Add origin"
+    actions:
+      - action: "command"
+        command: "git remote add origin git@github.com:$$var:username/$$noo:name.git"
