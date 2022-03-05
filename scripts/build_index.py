@@ -25,7 +25,7 @@ with open("index.html", "w+") as f:
 with open("registry.json", "w+") as f:
     registry = {}
     for noo_file in directory:
-        name = noo_file.removesuffix(".noofile.yml")
+        name = noo_file.replace(".noofile.yml", "")
         url = origin + noo_file
         registry[name] = url
     f.write(dumps(registry))
