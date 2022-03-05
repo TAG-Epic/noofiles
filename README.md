@@ -1,4 +1,4 @@
-# NOOhub
+# Noo collection
 A nice public directory of noofiles.  
 
 ## Installing/updating
