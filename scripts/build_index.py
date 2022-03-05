@@ -23,6 +23,11 @@ with open("index.html", "w+") as f:
 
 # Build registry
 with open("registry.json", "w+") as f:
-    f.write(dumps({noofile: origin + noofile for noofile in directory}))
+    registry = {}
+    for noo_file in directory:
+        name = noo_file.removesuffix(".noofile.yml")
+        url = origin + noo_file
+        registry[name] = url
+    f.write(dumps(registry))
 
 
