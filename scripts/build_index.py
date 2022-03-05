@@ -1,9 +1,10 @@
 from json import dumps
 from pathlib import Path
+from os import getenv
 
 path = Path(".")
-
 directory = []
+origin = getenv("origin", "https://noo.farfrom.world/")
 
 for noo_file in path.glob("*/*.noofile.yml"):
     directory.append(str(noo_file))
@@ -18,5 +19,10 @@ for noo_file in directory:
     html += f"<a href=\"/{noo_file}\">{noo_file}</a><br>"
 with open("index.html", "w+") as f:
     f.write(html)
+
+
+# Build registry
+with open("registry.json", "w+") as f:
+    f.write(dumps({noofile: origin + noofile for noofile in directory}))
 
 
