@@ -25,12 +25,12 @@ steps:
     actions:
       - action: "replace"
         files:
-          - "pyproject.toml"
+          - "Cargo.toml"
         src: "NOO-NAME"
         dest: "$$noo:name"
       - action: "replace"
         files:
-          - "pyproject.toml"
+          - "Cargo.toml"
         src: "NOO-VERSION"
         dest: "$$var:version"
   - name: "Setup git"
