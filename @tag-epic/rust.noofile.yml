@@ -1,5 +1,5 @@
 name: Rust
-remote: git:noohub/rust-template
+remote: git:noocollection/rust-template
 
 read:
   - name: "version"
