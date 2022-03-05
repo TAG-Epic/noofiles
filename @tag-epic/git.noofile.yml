@@ -1,9 +1,5 @@
 name: Git
 
-read:
-  - name: "username"
-    prompt: "GitHub username"
-
 steps:
   - name: "Create git repo"
     actions:
