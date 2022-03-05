@@ -1,0 +1,84 @@
+name: Python
+remote: git:tag-epic/python-template
+
+read:
+  - name: "version"
+    prompt: "Project version"
+    default: "1.0.0"
+  - name: "username"
+    prompt: "GitHub username"
+  - name: "description"
+    prompt: "Description"
+  - name: "python_version"
+    prompt: "Python version constraint"
+    default: "^3.10"
+
+steps:
+  - name: "Fill license"
+    actions:
+      - action: "replace"
+        files:
+          - "LICENSE"
+        src: "NOO-AUTHOR"
+        dest: "$$var:username"
+      - action: "replace"
+        files:
+          - "LICENSE"
+        src: "NOO-YEAR"
+        dest: "$$noo:year"
+  - name: "Fill pyproject.toml"
+    actions:
+      - action: "replace"
+        files:
+          - "pyproject.toml"
+        src: "NOO-NAME"
+        dest: "$$noo:name"
+      - action: "replace"
+        files:
+          - "pyproject.toml"
+        src: "NOO-VERSION"
+        dest: "$$var:version"
+      - action: "replace"
+        files:
+          - "pyproject.toml"
+        src: "NOO-AUTHOR"
+        dest: "$$var:username"
+      - action: "replace"
+        files:
+          - "pyproject.toml"
+        src: "NOO-DESCRIPTION"
+        dest: "$$var:description"
+      - action: "replace"
+        files:
+          - "pyproject.toml"
+        src: "NOO-PYTHON-VERSION"
+        dest: "$$var:python_version"
+
+  - name: "Update lockfile"
+    actions:
+      - action: "command"
+        command: "poetry update"
+        cwd: "./$$noo:name"
+  - name: "Install dependencies"
+    actions:
+      - action: "command"
+        command: "poetry install"
+        cwd: "./$$noo:name"
+  - name: "Initialize git"
+    actions:
+      - action: "command"
+        command: "git init"
+        cwd: "./$$noo:name"
+  - name: "Commit template"
+    actions:
+      - action: "command"
+        command: "git add ."
+        cwd: "./$$noo:name"
+      - action: "command"
+        command: "git commit -m \"Feat: Use python noo template\""
+        cwd: "./$$noo:name"
+  - name: "Add origin"
+    actions:
+      - action: "command"
+        command: "git remote add origin git@github.com:$$var:username/$$noo:name.git"
+        cwd: "./$$noo:name"
